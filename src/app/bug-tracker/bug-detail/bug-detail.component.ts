@@ -24,11 +24,19 @@ export class BugDetailComponent implements OnInit {
   @Input() private currentBug: Bug = new Bug(null, null, this.statuses.Logged, this.severities.Severe, null, null, null, null, null);
 
   isLoggedIn: boolean;
+  updatedBug: boolean = false;
   public authState: FirebaseAuthState;
   name: any;
   username: string;
 
-  constructor(private formB: FormBuilder, private bugService: BugService) {
+  constructor(private formB: FormBuilder, private bugService: BugService, private af: AngularFire,private router: Router) {
+    this.af.auth.subscribe((auth) => {
+      if (auth) {
+        this.name = auth;
+        console.log(auth.auth.email);
+        this.username = auth.auth.email;
+      }
+    });
   }
 
   ngOnInit() {
@@ -52,8 +60,9 @@ export class BugDetailComponent implements OnInit {
         bug.updatedBy,
         bug.updatedDate
       );
+      //Save button available when bug is already made
+      this.updatedBug = true;
     }
-
     //Model driven method
    // this.bugForm = new FormGroup({
      // title: new FormControl(null, [Validators.required, forbiddenStringValidator(/puppy/i)]),
@@ -92,7 +101,6 @@ export class BugDetailComponent implements OnInit {
   }
 
   updateBug() {
-    this.currentBug.updatedBy = this.authState.auth.displayName;
     this.bugService.updateBug(this.currentBug);
     this.resetForm();
   }
@@ -104,5 +112,12 @@ export class BugDetailComponent implements OnInit {
 
   cleanBug() {
     this.currentBug = new Bug(null, null, this.statuses.Logged, this.severities.Severe, null, null, null);
+  }
+
+  deleteBug() {
+    if(confirm("Do you really want to delete this bug?")) {
+      this.bugService.deleteBug(this.currentBug);
+      this.cleanBug();
+    }
   }
 }

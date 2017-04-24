@@ -28,39 +28,52 @@ export class BugListComponent implements OnInit {
   ngOnInit() {
     this.getAddedBugs();
     this.getUpdatedBugs();
+    this.getUpdatedList();
   }
 
   getAddedBugs() {
     this.bugService.getAddedBugs()
       .subscribe(bug => {
-        this.bugs.push(bug);
-        console.log(this.bugs);
-      },
-      err => {
-        console.error("Unable to get added bug - ", err)
-      });
+          this.bugs.push(bug);
+          console.log(this.bugs);
+        },
+        err => {
+          console.error("Unable to get added bug - ", err)
+        });
   }
 
   getUpdatedBugs() {
     this.bugService.changedListener()
       .subscribe(updatedBug => {
-        //Returns the index of the first occurrence of a value of the array that matches our id
-        //After this we use the bugIndex and updates the position with the updated bug
-        const bugIndex = this.bugs.map(index => index.id).indexOf(updatedBug['id']);
-        this.bugs[bugIndex] = updatedBug;
+          //Returns the index of the first occurrence of a value of the array that matches our id
+          //After this we use the bugIndex and updates the position with the updated bug
+          const bugIndex = this.bugs.map(index => index.id).indexOf(updatedBug['id']);
+          this.bugs[bugIndex] = updatedBug;
+        },
+        err => {
+          console.error("Unable to get updated bug - ", err);
+        });
+  }
+
+  getUpdatedList() {
+    this.bugService.getUpdatedList()
+      .subscribe(deletedBug => {
+        const bugIndex = this.bugs.map(index => index.id).indexOf(deletedBug['id']);
+        console.log("bugIndex " + bugIndex);
+        console.log(this.bugs);
       },
       err => {
-        console.error("Unable to get updated bug - ", err);
-      });
+        console.error("Unable to get updated list after removal of bugs - ", err);
+      })
   }
 
   logout() {
-    firebase.auth().signOut().then(function() {
+    firebase.auth().signOut().then(function () {
       console.log("Sign-out successful.");
-    }).catch(function(error) {
+    }).catch(function (error) {
       // An error happened.
     });
     console.log("Logged Out");
     this.router.navigateByUrl('/login');
+    }
   }
-}

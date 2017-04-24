@@ -42,11 +42,26 @@ export class BugService {
   changedListener(): Observable<any> {
     return Observable.create(obs => {
       this.bugsDbReference.on('child_changed', bug => {
-        const updatedBug = bug.val() as Bug;
-        updatedBug.id = bug.key;
-        obs.next(updatedBug);
+          const updatedBug = bug.val() as Bug;
+          updatedBug.id = bug.key;
+          obs.next(updatedBug);
+        },
+        err => {
+          obs.throw(err);
+        });
+    });
+  }
+
+
+  getUpdatedList(): Observable<any> {
+    return Observable.create(obs => {
+      this.bugsDbReference.on('child_removed', bug => {
+        const deletedBug = bug.val() as Bug;
+        deletedBug.id = bug.key;
+        console.log(deletedBug.id);
+        obs.next(deletedBug);
       },
-      err => {
+        err => {
         obs.throw(err);
       });
     });
@@ -69,8 +84,20 @@ export class BugService {
   updateBug(bug: Bug) {
     const currentBugReference = this.bugsDbReference.child(bug.id);
     bug.id = null;
-    bug.updatedBy = "Tom Tickle";
+    bug.updatedBy = this.loggedInUser;
+    console.log(this.loggedInUser);
     bug.updatedDate = Date.now();
     currentBugReference.update(bug);
+  }
+
+  deleteBug(bug: Bug) {
+
+    const bugsRef = this.bugsDbReference.child(bug.id);
+    bug.id = null;
+    bugsRef.on("value", function (snapshot) {
+      console.log(snapshot.key);
+    }, function (error) {
+      console.log("Error: " + error.code)
+    })
   }
 }

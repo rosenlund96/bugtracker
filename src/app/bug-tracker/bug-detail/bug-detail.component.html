@@ -30,6 +30,7 @@
         <div class="modal-footer">
           <button class="btn btn-danger cancel" type="button" data-dismiss="modal">Cancel</button>
           <button class="btn btn-success suc" type="submit" data-dismiss="modal" (click)="submitForm()">Save</button>
+          <button class="btn btn-danger" *ngIf="updatedBug" type="submit" data-dismiss="modal" (click)="deleteBug(bug)">Delete</button>
         </div>
       </form>
     </div>
