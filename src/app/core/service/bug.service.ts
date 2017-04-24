@@ -93,11 +93,15 @@ export class BugService {
   deleteBug(bug: Bug) {
 
     const bugsRef = this.bugsDbReference.child(bug.id);
+    var savedId: string;
     bug.id = null;
     bugsRef.on("value", function (snapshot) {
-      console.log(snapshot.key);
+      savedId = snapshot.key;
     }, function (error) {
       console.log("Error: " + error.code)
     })
+    console.log(savedId);
+    this.bugsDbReference.child('bug').child(savedId).remove();
+    //bugsRef.child(savedId).remove();
   }
 }
