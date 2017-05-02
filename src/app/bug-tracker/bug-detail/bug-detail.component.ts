@@ -63,13 +63,6 @@ export class BugDetailComponent implements OnInit {
       //Save button available when bug is already made
       this.updatedBug = true;
     }
-    //Model driven method
-   // this.bugForm = new FormGroup({
-     // title: new FormControl(null, [Validators.required, forbiddenStringValidator(/puppy/i)]),
-      //status: new FormControl(1, Validators.required),
-      //severity: new FormControl(1, Validators.required),
-      //description: new FormControl(null, Validators.required),
-    //});
 
     //Reactive forms
     this.bugForm = this.formB.group({

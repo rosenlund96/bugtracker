@@ -12,7 +12,7 @@
   <button type="type" class="btn btn-default" (click)="directToSignUp()">Sign Up</button>
 </form>
 
-<div *ngIf="authState">
+  <div *ngIf="authState">
   Logged as {{ authState.auth.email }}
   <button (click)="logOut()">Logout</button>
 </div>

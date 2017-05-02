@@ -58,22 +58,13 @@ export class BugListComponent implements OnInit {
   getUpdatedList() {
     this.bugService.getUpdatedList()
       .subscribe(deletedBug => {
-        const bugIndex = this.bugs.map(index => index.id).indexOf(deletedBug['id']);
-        console.log("bugIndex " + bugIndex);
-        console.log(this.bugs);
-      },
-      err => {
-        console.error("Unable to get updated list after removal of bugs - ", err);
-      })
+          const bugIndex = this.bugs.map(index => index.id).indexOf(deletedBug['id']);
+          console.log("bugIndex " + bugIndex);
+          console.log(this.bugs);
+          this.bugs.splice((bugIndex), 1);
+        },
+        err => {
+          console.error("Unable to get updated list after removal of bugs - ", err);
+        })
   }
-
-  logout() {
-    firebase.auth().signOut().then(function () {
-      console.log("Sign-out successful.");
-    }).catch(function (error) {
-      // An error happened.
-    });
-    console.log("Logged Out");
-    this.router.navigateByUrl('/login');
-    }
-  }
+}

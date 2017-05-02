@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AngularFire, FirebaseAuthState, firebaseAuthConfig, AuthProviders, AuthMethods} from "angularfire2";
+import { AngularFire, FirebaseAuthState, firebaseAuthConfig, AuthProviders, AuthMethods } from "angularfire2";
 import { Router } from "@angular/router";
 import { User } from "../model/user";
 
@@ -53,7 +53,7 @@ export class LoginComponent {
 
   logOut() {
     this.af.auth.logout();
-    
+
     firebase.auth().signOut().then(function() {
       console.log("Sign-out successful.");
     }).catch(function(error) {
