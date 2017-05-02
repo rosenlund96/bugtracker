@@ -13,6 +13,7 @@ export class LoginComponent {
   private model: User;
   private errCond;
   public authState: FirebaseAuthState;
+  public invalidMessage: string;
 
   constructor(private af: AngularFire, private router: Router) {
     this.af.auth.subscribe((auth) => {
@@ -24,7 +25,6 @@ export class LoginComponent {
 
   submit(formData) {
     if (formData.valid) {
-      console.log(formData.value);
       this.af.auth.login({
         email: formData.value.email,
         password: formData.value.password
@@ -40,9 +40,10 @@ export class LoginComponent {
         }).catch(
         (err) => {
           console.log(err);
-          this.errCond = false;
+          this.errCond = true;
+          this.invalidMessage = "Please try again!";
         })
-    }
+     }
   }
 
   directToSignUp() {
