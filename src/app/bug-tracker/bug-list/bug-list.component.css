@@ -16,6 +16,7 @@ i {
   color: #34434B;
 }
 
-span {
-  margin-right: 0;
+#backgroundthead {
+  background-color: rgba(52,67, 75,.1);
 }
+

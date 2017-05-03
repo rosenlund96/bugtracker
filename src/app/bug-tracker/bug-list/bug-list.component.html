@@ -5,7 +5,8 @@
   </div>
 
   <span class="col-xs-7">
-    <button class="btn btn-success btn-lg" [attr.data-target]=" '#' + bugDetail.modalId" data-toggle="modal">Add Bug</button>
+    <button class="btn btn-success btn-lg" [attr.data-target]=" '#' + bugDetail.modalId" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span> Add Bug</button>
+    <br>
     <br>
     <br>
   </span>
@@ -13,14 +14,14 @@
 <div class="row">
   <div class="col-xs-12">
     <table class="table">
-      <thead>
+      <thead id="backgroundthead">
         <tr>
-          <th>Title</th>
-          <th>Status</th>
-          <th>Severity</th>
-          <th>Description</th>
-          <th>Found By</th>
-          <th>Date</th>
+          <th><span class="glyphicon glyphicon-pushpin"></span> Title</th>
+          <th><span class="glyphicon glyphicon-wrench"></span> Status</th>
+          <th><span class="glyphicon glyphicon-flag"></span> Severity</th>
+          <th><span class="glyphicon glyphicon-pencil"></span> Description</th>
+          <th><span class="glyphicon glyphicon-user"></span> Found By</th>
+          <th><span class="glyphicon glyphicon-calendar"></span> Date</th>
         </tr>
       </thead>
       <tbody>
