@@ -1,10 +1,14 @@
 nav {
-  padding: 1rem;
-  background-color: #444444;
+  padding: 0.5rem;
+  background-color: #CACFD2;
   border-radius: 0;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,.24);
+  box-shadow: 0 2px 2px 0 rgba(178, 186, 187,.24);
 }
 
 .navbar-brand {
+  color: #ffffff;
+}
+
+a {
   color: #ffffff;
 }
