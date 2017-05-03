@@ -11,25 +11,32 @@ import {User} from "../model/user";
 export class RegistrationComponent {
 
   private model: User;
-  private errCond;
+  private errCond: boolean = false;
+  invalidMessage: string;
 
   constructor(private af: AngularFire, private router: Router) {  }
 
   submit(formData) {
     if (formData.valid) {
-      console.log(formData.value);
-      this.af.auth.createUser({
-        email: formData.value.email,
-        password: formData.value.password
-      }).then(
-        (success) => {
-          console.log(success);
-          this.router.navigate(['login'])
-        }).catch(
-        (err) => {
-          console.log(err);
-        }
-      )
+        console.log(formData.value);
+        this.af.auth.createUser({
+          email: formData.value.email,
+          password: formData.value.password
+        }).then(
+          (success) => {
+            console.log(success);
+            this.router.navigate(['login'])
+            this.errCond = false;
+          }).catch(
+          (err) => {
+            console.log(err);
+            this.errCond = true;
+            this.invalidMessage = "Please try again. Password should be at least 6 characters."
+          })
+    }
+    else {
+      this.errCond = true;
+      this.invalidMessage = "Please try again. Password should be at least 6 characters."
     }
   }
 

@@ -1,19 +1,18 @@
-<h2>Register</h2>
-
+<h2>Sign up</h2>
+<br>
 <form class="form" #formData='ngForm' name="formData" (ngSubmit)="submit(formData)">
   <div class="form-group">
-    <label for="name">First Name</label>
-    <input type="text" class="form-control" id="name" name="name" placeholder="First Name" (ngModel)="firstName" />
-    <label for="lastName">Last Name</label>
-    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" (ngModel)="lastName" />
-  </div>
+    <label for="email">Enter email address</label>
+    <input type="email" class="form-control" id="email" name="email" placeholder="Email" (ngModel)="email" ng-required="true" />
+    </div>
+
   <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" name="email" placeholder="Email" (ngModel)="email" />
+    <label for="password">Enter password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Password" (ngModel)="password" ng-required="true" />
   </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" name="password" placeholder="Password" (ngModel)="password" />
-  </div>
-  <button type="submit" class="btn btn-default">Register</button>
+  <br>
+  <button type="submit" class="btn btn-primary">Register</button>
+  <button type="submit" class="btn btn-default" (click)="redirect()">Back</button>
 </form>
+<br>
+<p class="text-danger" *ngIf="errCond">{{invalidMessage}}</p>
