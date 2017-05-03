@@ -2,7 +2,6 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <form [formGroup]="bugForm" #form>
-        state: {{form.className}}
         <div class="modal-body">
           <fieldset class="form-inline">
             <div class="form-group" id="title-form-group">
@@ -15,6 +14,7 @@
                 <option *ngFor="let status of statusArr" [value]="status">{{statuses[status]}}</option>
               </select>
             </div>
+            <button class="btn btn-default pull-right" *ngIf="updatedBug" type="submit" data-dismiss="modal" (click)="deleteBug(bug)"><span class="glyphicon glyphicon-trash"></span></button>
           </fieldset>
           <div class="form-group float-xs-left" id="severity-form-group">
             <label for="severity-dropdown" class="sr-only">Severity Dropdow</label>
@@ -28,9 +28,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-danger cancel" type="button" data-dismiss="modal">Cancel</button>
-          <button class="btn btn-success suc" type="submit" data-dismiss="modal" (click)="submitForm()">Save</button>
-          <button class="btn btn-danger" *ngIf="updatedBug" type="submit" data-dismiss="modal" (click)="deleteBug(bug)">Delete</button>
+          <button class="btn btn-success suc" type="submit" data-dismiss="modal" (click)="submitForm()"><span class="glyphicon glyphicon-ok"></span> Save</button>
+          <button class="btn btn-danger" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
         </div>
       </form>
     </div>
