@@ -11,13 +11,12 @@
 }
 
 .btn-primary {
-  background-color: #34434B;
+  background-color: #999999;
   border-color: #34434B;
 }
 
 .btn-primary:hover,
 .btn-primary:disabled {
-  background-color: #3F515A;
   border-color: #3F515A;
 }
 
@@ -47,12 +46,14 @@ textarea {
 
 #title-form-group {
   margin-top: 1em;
+  text-decoration-color: #000000;
 }
 
 #title-field {
-  font-size: 1.3rem;
+  font-size: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   border: none;
-  text-transform: uppercase;
 }
 
 #title-field,
@@ -61,12 +62,12 @@ textarea {
 }
 
 #severity-form-group {
-  padding-left: 0;
   margin-bottom: 0;
 }
 
 #severity-dropdown {
-  margin: 1rem 0 1.5rem 0;
+  background-color: #cccccc;
+  padding-left: 1rem;
 }
 
 .modal-footer {
