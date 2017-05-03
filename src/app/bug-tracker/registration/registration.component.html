@@ -2,12 +2,12 @@
 <br>
 <form class="form" #formData='ngForm' name="formData" (ngSubmit)="submit(formData)">
   <div class="form-group">
-    <label for="email">Enter email address</label>
+    <label for="email"><span class="glyphicon glyphicon-user"></span> Enter email address</label>
     <input type="email" class="form-control" id="email" name="email" placeholder="Email" (ngModel)="email" ng-required="true" />
     </div>
 
   <div class="form-group">
-    <label for="password">Enter password</label>
+    <label for="password"><span class="glyphicon glyphicon-lock"></span> Enter password</label>
     <input type="password" class="form-control" id="password" name="password" placeholder="Password" (ngModel)="password" ng-required="true" />
   </div>
   <br>
@@ -15,4 +15,4 @@
   <button type="submit" class="btn btn-default" (click)="redirect()">Back</button>
 </form>
 <br>
-<p class="text-danger" *ngIf="errCond">{{invalidMessage}}</p>
+<p class="text-danger" *ngIf="errCond"><span class="glyphicon glyphicon-remove"></span> {{invalidMessage}}</p>
