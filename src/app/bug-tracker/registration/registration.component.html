@@ -3,15 +3,15 @@
 <form class="form" #formData='ngForm' name="formData" (ngSubmit)="submit(formData)">
   <div class="form-group">
     <label for="email"><span class="glyphicon glyphicon-user"></span> Enter email address</label>
-    <input type="email" class="form-control" id="email" name="email" placeholder="Email" (ngModel)="email" ng-required="true" />
+    <input type="email" required class="form-control" id="email" name="email" placeholder="Email" (ngModel)="email" ng-required="true" />
     </div>
 
   <div class="form-group">
     <label for="password"><span class="glyphicon glyphicon-lock"></span> Enter password</label>
-    <input type="password" class="form-control" id="password" name="password" placeholder="Password" (ngModel)="password" ng-required="true" />
+    <input type="password" required class="form-control" id="password" name="password" placeholder="Password" (ngModel)="password" ng-required="true" />
   </div>
   <br>
-  <button type="submit" class="btn btn-primary">Register</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!formData.valid">Register</button>
   <button type="submit" class="btn btn-default" (click)="redirect()">Back</button>
 </form>
 <br>

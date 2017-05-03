@@ -31,12 +31,14 @@ export class RegistrationComponent {
           (err) => {
             console.log(err);
             this.errCond = true;
-            this.invalidMessage = "Please try again. Password should be at least 6 characters."
+            this.invalidMessage = "Please try again. " +
+              "Password should be at least 6 characters."
           })
     }
     else {
       this.errCond = true;
-      this.invalidMessage = "Please try again. Password should be at least 6 characters."
+      this.invalidMessage = "Please try again. " +
+        "Password should be at least 6 characters."
     }
   }
 

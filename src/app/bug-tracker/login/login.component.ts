@@ -41,7 +41,8 @@ export class LoginComponent {
         (err) => {
           console.log(err);
           this.errCond = true;
-          this.invalidMessage = "Please try again!";
+          this.invalidMessage = "Please try again! " +
+            "Do you remember that a password has to be at least 6 characters?";
         })
      }
   }
